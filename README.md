@@ -16,4 +16,4 @@ npx hardhat run scripts/deploy.js --network goerli
 
 To see it on OpenSea
 
-https://testnets.opensea.io/assets/goerli/<address of the deployed contract>/<nft number>
+https://testnets.opensea.io/assets/goerli/[address of the deployed contract]/[nft number]

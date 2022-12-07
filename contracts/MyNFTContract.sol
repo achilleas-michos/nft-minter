@@ -10,6 +10,7 @@ import "hardhat/console.sol";
 import { Base64 } from "./libraries/Base64.sol";
 
 contract MyNFTContract is ERC721URIStorage {
+  uint16 private _limit = 50;
   using Counters for Counters.Counter;
   Counters.Counter private _tokenIds;
 
@@ -21,8 +22,13 @@ contract MyNFTContract is ERC721URIStorage {
     console.log("This is my NFT contract. Woah!");
   }
 
+  function getTotalNFTsMintedSoFar() public view returns (string memory) {
+    return string(abi.encodePacked("Minted ", Strings.toString(_tokenIds.current()), " out of ", _limit));
+  }
+
   function mintNewNFT() public {
     uint256 newItemId = _tokenIds.current();
+    require(newItemId<=_limit);
 
     string memory title = string(abi.encodePacked("Achilleas' NFT #", Strings.toString(newItemId)));
     string memory finalSvg = string(abi.encodePacked(baseSvg, title, "</text></svg>"));
